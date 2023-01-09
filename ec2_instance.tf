@@ -46,7 +46,7 @@ resource "aws_instance" "my_ec2_server" {
   ami             = " " #provide the ID of your image
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.ec2_group.name]
-  key_name        = "for-news"
+  key_name        = " " #provide the name of your key
   user_data       = local.ec2_platform_config
   tags = {
     Name = var.instance_name
