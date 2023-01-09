@@ -60,8 +60,10 @@ class NewsStream:
 
 if __name__ == "__main__":
     my_news_stream = NewsStream()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     stream = rd.content.pricing.Definition(
         universe=['NFCP_UBMS'], service="ERT_FD3_LF1").get_stream()
-    stream.on_update(my_news_stream.display_updated_fields)
+    stream.on_update(my_news_stream.validate_headlines_and_push_to_kinesis)
     stream.open()
     loop.run_forever()
